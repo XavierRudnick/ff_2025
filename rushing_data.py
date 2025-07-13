@@ -10,8 +10,8 @@ df = pd.read_csv(r"rush_data\pf_rush_rb.csv")
 #df1 = pd.read_csv(r"rush_data\FantasyPros_Fantasy_Football_Advanced_Stats_Report_RB.csv")
 #df2 =  pd.read_csv(r"rush_data\FantasyPros_Fantasy_Football_Statistics_RB.csv")
 #df3 =  pd.read_csv(r"rush_data\FantasyPros_Fantasy_Football_Red_Zone_Report_RB.csv")
-df4 = pd.read_csv(r"rush_data\rb_fantasy_points_xtd.csv")
-
+#df4 = pd.read_csv(r"rush_data\rb_fantasy_points_xtd.csv")
+df5 = pd.read_csv(r"rush_data\oline_ALY.csv")
 #columns_to_drop = [
 #    "TK LOSS_x","TK LOSS YDS_x","REC_x","TGT_x","RZ TGT_x","TK LOSS_y","TK LOSS YDS_y","REC_y","TGT_y","RZ TGT_y"
 #]
@@ -63,11 +63,22 @@ df4 = pd.read_csv(r"rush_data\rb_fantasy_points_xtd.csv")
 
 #merged_df = pd.merge(df, df4[columns_to_merge_from_df2], on="Player", how="left")
 
-df['fpts_diff'] =df['FPTS/G'] - df['XFP']
-df['fpts_diff'] = df['fpts_diff'].round(2)
+#df['fpts_diff'] =df['FPTS/G'] - df['XFP']
+#df['fpts_diff'] = df['fpts_diff'].round(2)
 
-df['tds_diff'] =df['TD/G'] - df['XTD']
-df['tds_diff'] = df['tds_diff'].round(2)
+#df['tds_diff'] =df['TD/G'] - df['XTD']
+#df['tds_diff'] = df['tds_diff'].round(2)
 
-df.to_csv(r"rush_data\pf_rush_rb.csv",index=False)
+#sorted_players = df.sort_values(by='FPTS/G', ascending=False)
+#top_50_players = sorted_players.head(30)
+#print(top_50_players[['Player', 'FPTS/G']])
+
+columns_to_merge_from_df2 = [
+    "Team","ALY"
+]
+merged_df = pd.merge(df, df5[columns_to_merge_from_df2], on="Team", how="left")
+
+
+
+merged_df.to_csv(r"rush_data\pf_rush_rb.csv",index=False)
 
