@@ -1,9 +1,9 @@
 import pandas as pd
 import io
 
-df1 = pd.read_csv(r"data\FantasyPros_Fantasy_Football_Red_Zone_Report_WR.csv")
-df2 = pd.read_csv(r"data\FantasyPros_ProFootball_WR.csv")
-df3 = pd.read_csv(r"data\FantasyPros_ProFootball_WR.csv")
+df1 = pd.read_csv(r"data\FantasyPros_Fantasy_Football_Statistics_WR.csv")
+df2 = pd.read_csv(r"data\merged_wr.csv")
+#df3 = pd.read_csv(r"data\FantasyPros_ProFootball_WR.csv")
 
 df1["Player"] = df1["Player"].str.replace(r'\s+\(.*\)', '', regex=True)
 
@@ -17,6 +17,13 @@ columns_to_merge_from_df2 = [
     "Player","RZ_REC","RZ_TGT","RZ_REC_PCT","RZ_YDS","RZ_P_TD","RZ_TGT_PCT"
 ]
 
+columns_to_merge_from_df2 = [
+    "Player","REC_I10","TGT_I10","REC_PCT_I10","YDS_I10","TD_I10","TGT_PCT_I10"
+]
+
+columns_to_merge_from_df2 = [
+    "Player","FPTS","FPTS/G","RTD"
+]
 
 def standardize_player_name(name):
     name = str(name).replace(' Jr.', '').replace(' Sr.', '').replace(' III', '').replace(' II', '').replace("'", "").replace(".", "").replace("Joshua","Josh").replace("Gabe","gabriel").strip().lower()
@@ -32,4 +39,4 @@ df2['Player'] = df2['Player'].apply(standardize_player_name)
 
 merged_df = pd.merge(df2, df1[columns_to_merge_from_df2], on="Player", how="left")
 
-merged_df.to_csv(r"data\FantasyPros_ProFootball_WR.csv",index=False)
+merged_df.to_csv(r"data\merged_wr.csv",index=False)
