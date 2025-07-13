@@ -48,7 +48,9 @@ player_names_string = ', '.join(cleaned_and_quoted_names)
 
 columns_to_drop = ['Int', 'Awards',"-9999"]
 df = df.drop(columns=columns_to_drop)
-"""
 
 df = calculate_target_share(df)
+
+"""
+
 df.to_csv(r"data\clean_wr_data.csv",index=False)
