@@ -2,10 +2,10 @@ import pandas as pd
 import io
 import re
 
-def standardize_player_name(name):
-    name = str(name).replace(' Jr.', '').replace(' Sr.', '').replace(' III', '').replace(' II', '').replace("'", "").replace(".", "").replace("Joshua","Josh").replace("Gabe","gabriel").strip().lower()
-    return name
+df = pd.read_csv(r"wr_data\merged_wr.csv")
 
-df = pd.read_csv(r"rush_data\pf_rush_rb.csv")
+#columns_for_new_df = ['Player', 'Age', 'Team', 'G','Tgt','Rec','Yds','Target_Share','AIR','CATCHABLE','RZ TGT','RZ_REC','RZ_REC_PCT','RZ_P_TD','RZ_TGT_PCT','Routes Run','FPTS','FPTS/G','RTD','XFP','TD/G','XTD','fpts_diff','td_diff','team_air','air_pct','WOPR','VOR']
+#new_df = df[columns_for_new_df]
 
-df.to_csv(r"rush_data\pf_rush_rb.csv",index=False)
+df_example = pd.DataFrame(df)
+print(df_example)
