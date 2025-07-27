@@ -21,7 +21,7 @@ def get_fair_prob(over_odds, under_odds):
 
 # This is the key assumption
 STD_DEV = 35
-mean_df = pd.read_csv(r"wr_data\mean_lines.csv")
+mean_df = pd.read_csv(r"rush_data\mean_rushing_lines.csv")
 
 # Calculate fair probability for the over
 mean_df['p_fair_over'] = mean_df.apply(lambda row: get_fair_prob(row['mean_over_odds'], row['mean_under_odds']), axis=1)
@@ -39,7 +39,7 @@ mean_df['normalized_line'] = mean_df['mean_line'] - (mean_df['z_score_correct'] 
 
 # Create final dataframe and sort it
 result_df = mean_df[['Player', 'normalized_line']].sort_values(by='normalized_line', ascending=False)
-result_df.to_csv(r'wr_data\normalized_lines.csv', index=False)
+result_df.to_csv(r'rush_data\normalized_rush_lines.csv', index=False)
 
 print(result_df)
 
