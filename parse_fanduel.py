@@ -3,6 +3,7 @@
 import re
 from scipy.stats import norm
 import pandas as pd
+"""
 def get_fair_prob(over_odds, under_odds):
     # Convert American odds to implied probability
     def american_to_prob(odds):
@@ -43,9 +44,13 @@ result_df.to_csv(r'rush_data\normalized_rush_lines.csv', index=False)
 
 print(result_df)
 
+"""
 
+df1 = pd.read_csv(r"rush_data\rush_rb_custom.csv")
+df2 = pd.read_csv(r"wr_data\wr_custom.csv")
 
-
+df1.to_excel(r"rush_data\rush_rb_custom.xlsx", index=False)
+df2.to_excel(r"wr_data\wr_custom.xlsx", index=False)
 
 
 
